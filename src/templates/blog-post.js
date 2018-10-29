@@ -11,6 +11,7 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, `data.config.frontmatter.title`)
+    const siteBio = get(this, 'props.data.config.html')
     const siteDescription = post.excerpt
     const { previous, next } = this.props.pageContext
 
@@ -38,7 +39,9 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
-        <Bio />
+        <Bio>
+          <div dangerouslySetInnerHTML={{ __html: siteBio }} />
+        </Bio>
 
         <ul
           style={{
@@ -76,6 +79,7 @@ export default BlogPostTemplate
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $language: String!) {
     config:markdownRemark(frontmatter: { config_language: { eq: $language } }) {
+      html
       frontmatter {
         title
       }

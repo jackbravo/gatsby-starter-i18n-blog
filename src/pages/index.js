@@ -11,6 +11,7 @@ class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.config.frontmatter.title')
     const siteDescription = get(this, 'props.data.config.frontmatter.description')
+    const siteBio = get(this, 'props.data.config.html')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
@@ -20,7 +21,9 @@ class BlogIndex extends React.Component {
           meta={[{ name: 'description', content: siteDescription }]}
           title={siteTitle}
         />
-        <Bio />
+        <Bio>
+          <div dangerouslySetInnerHTML={{ __html: siteBio }} />
+        </Bio>
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
           return (
@@ -49,6 +52,7 @@ export default BlogIndex
 export const pageQuery = graphql`
   query {
     config:markdownRemark(frontmatter: {config_language: {eq: "en"}}) {
+      html
       frontmatter {
         title
         description
