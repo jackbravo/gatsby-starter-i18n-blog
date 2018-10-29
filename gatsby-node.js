@@ -12,7 +12,10 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+            allMarkdownRemark(
+                sort: { fields: [frontmatter___date], order: DESC }, limit: 1000
+                filter: {frontmatter: {language: {ne: null}}}
+              ) {
               edges {
                 node {
                   fields {
@@ -20,6 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
                   }
                   frontmatter {
                     title
+                    language
                   }
                 }
               }
@@ -44,6 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
             component: blogPost,
             context: {
               slug: post.node.fields.slug,
+              language: post.node.frontmatter.language,
               previous,
               next,
             },

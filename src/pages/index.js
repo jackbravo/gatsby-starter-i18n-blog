@@ -9,11 +9,8 @@ import { rhythm } from '../utils/typography'
 
 class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const siteDescription = get(
-      this,
-      'props.data.site.siteMetadata.description'
-    )
+    const siteTitle = get(this, 'props.data.config.frontmatter.title')
+    const siteDescription = get(this, 'props.data.config.frontmatter.description')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
@@ -51,8 +48,8 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
+    config:markdownRemark(frontmatter: {config_language: {eq: "en"}}) {
+      frontmatter {
         title
         description
       }

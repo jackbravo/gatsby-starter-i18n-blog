@@ -1,9 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Starter Blog',
-    author: 'Kyle Mathews',
-    description: 'A starter blog demonstrating what Gatsby can do.',
     siteUrl: 'https://gatsbyjs.github.io/gatsby-starter-blog/',
+    author: 'Kyle Mathews',
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
@@ -12,6 +10,13 @@ module.exports = {
       options: {
         path: `${__dirname}/src/pages`,
         name: 'pages',
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/data`,
+        name: 'data',
       },
     },
     {
