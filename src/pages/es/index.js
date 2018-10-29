@@ -2,9 +2,9 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 
-import BlogIndex from '../templates/blog-index'
+import BlogIndex from '../../templates/blog-index'
 
-class EnglishIndex extends React.Component {
+class SpanishIndex extends React.Component {
   render() {
     const config = get(this, 'props.data.config')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
@@ -14,23 +14,23 @@ class EnglishIndex extends React.Component {
       <BlogIndex
         config={config}
         location={location}
-        language='en'
+        language='es'
         posts={posts}
       />
     )
   }
 }
 
-export default EnglishIndex
+export default SpanishIndex
 
 export const pageQuery = graphql`
   query {
-    config:markdownRemark(frontmatter: {config_language: {eq: "en"}}) {
+    config:markdownRemark(frontmatter: {config_language: {eq: "es"}}) {
       ...ConfigIndex
     }
     allMarkdownRemark(
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { language: { eq: "en" } } }
+        filter: { frontmatter: { language: { eq: "es" } } }
       ) {
       edges {
         node {

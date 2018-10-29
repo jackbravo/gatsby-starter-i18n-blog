@@ -9,7 +9,7 @@ class Template extends React.Component {
     const rootPath = `${__PATH_PREFIX__}/`
     let header
 
-    if (location.pathname === rootPath) {
+    if ([rootPath, `${rootPath}es`].findIndex(v => v == location.pathname) !== -1) {
       header = (
         <h1
           style={{
