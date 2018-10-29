@@ -7,6 +7,47 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
+    const blogIndex = path.resolve('./src/templates/blog-index.js')
+    resolve(
+      graphql(
+        `
+          {
+            allMarkdownRemark(
+                filter: {frontmatter: {config_language: {ne: null}}}
+              ) {
+              edges {
+                node {
+                  frontmatter {
+                    config_language
+                  }
+                }
+              }
+            }
+          }
+        `
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
+
+        // Create blog posts pages.
+        const configs = result.data.allMarkdownRemark.edges;
+
+        _.each(configs, (config) => {
+          language = config.node.frontmatter.config_language
+          const path = language == 'en' ? '/' : `/${language}`
+          createPage({
+            path,
+            component: blogIndex,
+            context: {
+              language,
+            },
+          })
+        })
+      })
+    )
+
     const blogPost = path.resolve('./src/templates/blog-post.js')
     _.each(['en', 'es'], (language) => {
       resolve(

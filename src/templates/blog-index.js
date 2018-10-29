@@ -9,15 +9,16 @@ import { rhythm } from '../utils/typography'
 
 class BlogIndex extends React.Component {
   render() {
-    const { config, location, language, posts } = this.props
+    const config = get(this, 'props.data.config')
+    const posts = get(this, 'props.data.allMarkdownRemark.edges')
     const title = get(config, 'frontmatter.title')
     const description = get(config, 'frontmatter.description')
     const bio = get(config, 'html')
 
     return (
-      <Layout location={location} title={title}>
+      <Layout location={this.props.location} title={title}>
         <Helmet
-          htmlAttributes={{ lang: language }}
+          htmlAttributes={{ lang: this.props.pageContext.language }}
           meta={[{ name: 'description', content: description }]}
           title={title}
         />
@@ -50,21 +51,30 @@ class BlogIndex extends React.Component {
 export default BlogIndex
 
 export const blogIndexFragment = graphql`
-  fragment ConfigIndex on MarkdownRemark {
-    html
-    frontmatter {
-      title
-      description
+  query BlogPost($language: String!) {
+    config:markdownRemark(frontmatter: {config_language: {eq: $language}}) {
+      html
+      frontmatter {
+        title
+        description
+      }
     }
-  }
-  fragment BlogIndex on MarkdownRemark {
-    excerpt
-    fields {
-      slug
-    }
-    frontmatter {
-      date(formatString: "LL")
-      title
+    allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        filter: { frontmatter: { language: { eq: $language } } }
+      ) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "LL")
+            title
+          }
+        }
+      }
     }
   }
 `
