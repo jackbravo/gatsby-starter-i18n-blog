@@ -13,12 +13,12 @@ exports.createPages = ({ graphql, actions }) => {
         `
           {
             allMarkdownRemark(
-                filter: {frontmatter: {config_language: {ne: null}}}
+                filter: {frontmatter: {type: {eq: "language"}}}
               ) {
               edges {
                 node {
                   frontmatter {
-                    config_language
+                    language
                   }
                 }
               }
@@ -35,7 +35,7 @@ exports.createPages = ({ graphql, actions }) => {
         const configs = result.data.allMarkdownRemark.edges;
 
         _.each(configs, (config) => {
-          language = config.node.frontmatter.config_language
+          language = config.node.frontmatter.language
           const path = language == 'en' ? '/' : `/${language}`
           createPage({
             path,
@@ -56,7 +56,10 @@ exports.createPages = ({ graphql, actions }) => {
             {
               allMarkdownRemark(
                   sort: { fields: [frontmatter___date], order: DESC }, limit: 1000
-                  filter: {frontmatter: {language: {eq: "${language}"}}}
+                  filter: {frontmatter: {
+                    language: { eq: "${language}" }
+                    type: { eq: null }
+                  }}
                 ) {
                 edges {
                   node {

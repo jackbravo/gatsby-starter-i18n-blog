@@ -1,5 +1,6 @@
 ---
-config_language: es
+type: language
+language: es
 language_label: "Español"
 title: "El Blog Inicial de Gatsby"
 description: "Un blog demostrando lo que Gatsby puede hacer."

@@ -11,16 +11,16 @@ class BlogIndex extends React.Component {
   render() {
     const config = get(this, 'props.data.config')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
-    const title = get(config, 'frontmatter.title')
+    const siteTitle = get(config, 'frontmatter.title')
     const description = get(config, 'frontmatter.description')
     const bio = get(config, 'html')
 
     return (
-      <Layout location={this.props.location} title={title} language={this.props.pageContext.language}>
+      <Layout location={this.props.location} config={config}>
         <Helmet
           htmlAttributes={{ lang: this.props.pageContext.language }}
           meta={[{ name: 'description', content: description }]}
-          title={title}
+          title={siteTitle}
         />
         <Bio>
           <div dangerouslySetInnerHTML={{ __html: bio }} />
@@ -52,16 +52,26 @@ export default BlogIndex
 
 export const blogIndexFragment = graphql`
   query BlogPost($language: String!) {
-    config:markdownRemark(frontmatter: {config_language: {eq: $language}}) {
+    config:markdownRemark(frontmatter: {
+      language: { eq: $language }
+      type: { eq: "language" }
+    }) {
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
+        language
         description
       }
     }
     allMarkdownRemark(
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { language: { eq: $language } } }
+        filter: { frontmatter: {
+          language: { eq: $language }
+          type: { eq: null }
+        }}
       ) {
       edges {
         node {

@@ -6,15 +6,14 @@ import { rhythm, scale } from '../utils/typography'
 
 class Template extends React.Component {
   render() {
-    const { location, title, language, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
+    const { location, config, children } = this.props
     let header
 
-    if ([rootPath, `${rootPath}${language}`, `${rootPath}${language}/`].findIndex(v => v == location.pathname) !== -1) {
+    if (`${__PATH_PREFIX__}${config.fields.slug}` === location.pathname) {
       header = (
         <h1
           style={{
-            ...scale(1.5),
+            fontSize: '4rem',
             marginBottom: rhythm(1.5),
             marginTop: 0,
           }}
@@ -25,9 +24,9 @@ class Template extends React.Component {
               textDecoration: 'none',
               color: 'inherit',
             }}
-            to={'/'}
+            to={config.fields.slug}
           >
-            {title}
+            {config.frontmatter.title}
           </Link>
         </h1>
       )
@@ -48,7 +47,7 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            {title}
+            {config.frontmatter.title}
           </Link>
         </h3>
       )
@@ -62,7 +61,7 @@ class Template extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
-        <LanguageSwitcher language={language}/>
+        <LanguageSwitcher language={config.frontmatter.language}/>
         {header}
         {children}
       </div>

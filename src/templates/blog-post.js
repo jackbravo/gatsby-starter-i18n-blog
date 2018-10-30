@@ -16,7 +16,7 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
 
     return (
-      <Layout location={this.props.location} title={siteTitle} language={post.frontmatter.language}>
+      <Layout location={this.props.location} config={this.props.data.config}>
         <Helmet
           htmlAttributes={{ lang: post.frontmatter.language }}
           meta={[{ name: 'description', content: siteDescription }]}
@@ -78,10 +78,17 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $language: String!) {
-    config:markdownRemark(frontmatter: { config_language: { eq: $language } }) {
+    config:markdownRemark(frontmatter: {
+      language: { eq: $language }
+      type: { eq: "language" }
+    }) {
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
+        language
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
