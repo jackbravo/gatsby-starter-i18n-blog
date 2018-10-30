@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import LanguageSwitcher from '../components/LanguageSwitcher'
 
 import { rhythm, scale } from '../utils/typography'
 
@@ -61,6 +62,7 @@ class Template extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
+        <LanguageSwitcher language={language}/>
         {header}
         {children}
       </div>

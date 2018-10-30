@@ -1,5 +1,6 @@
 ---
 config_language: en
+language_label: "English"
 title: "Gatsby Starter Blog"
 description: "A starter blog demonstrating what Gatsby can do."
 ---
