@@ -16,7 +16,7 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} title={siteTitle} language={post.frontmatter.language}>
         <Helmet
           htmlAttributes={{ lang: post.frontmatter.language }}
           meta={[{ name: 'description', content: siteDescription }]}

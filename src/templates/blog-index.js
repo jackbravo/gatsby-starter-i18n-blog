@@ -16,7 +16,7 @@ class BlogIndex extends React.Component {
     const bio = get(config, 'html')
 
     return (
-      <Layout location={this.props.location} title={title}>
+      <Layout location={this.props.location} title={title} language={this.props.pageContext.language}>
         <Helmet
           htmlAttributes={{ lang: this.props.pageContext.language }}
           meta={[{ name: 'description', content: description }]}

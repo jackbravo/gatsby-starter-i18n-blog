@@ -5,11 +5,11 @@ import { rhythm, scale } from '../utils/typography'
 
 class Template extends React.Component {
   render() {
-    const { location, title, children } = this.props
+    const { location, title, language, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
     let header
 
-    if ([rootPath, `${rootPath}es`].findIndex(v => v == location.pathname) !== -1) {
+    if ([rootPath, `${rootPath}${language}`, `${rootPath}${language}/`].findIndex(v => v == location.pathname) !== -1) {
       header = (
         <h1
           style={{
