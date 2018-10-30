@@ -1,22 +1,17 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://gatsbyjs.github.io/gatsby-starter-blog/',
-    author: 'Kyle Mathews',
+    siteUrl: 'https://jackbravo.github.io/gatsby-starter-i18n-blog/',
+    author: 'Joaquín Bravo Contreras',
+    title: 'Gatsby Starter i18n Blog',
+    description: 'A starter blog with i18n',
   },
-  pathPrefix: '/gatsby-starter-blog',
+  pathPrefix: '/gatsby-starter-i18n-blog',
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/pages`,
         name: 'pages',
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/data`,
-        name: 'data',
       },
     },
     {

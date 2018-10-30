@@ -1,10 +1,10 @@
 {
-  "name": "gatsby-starter-blog",
-  "description": "Starter Gatsby Blog",
+  "name": "gatsby-starter-i18n-blog",
+  "description": "Starter Gatsby i18n Blog",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Joaquín Bravo Contreras <jackbravo@gmail.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
+    "url": "https://github.com/jackbravo/gatsby-starter-i18n-blog/issues"
   },
   "dependencies": {
     "gatsby": "^2.0.19",
@@ -40,7 +40,7 @@
     "gh-pages": "^1.2.0",
     "prettier": "^1.14.2"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/jackbravo/gatsby-starter-i18n-blog#readme",
   "keywords": [
     "gatsby"
   ],
@@ -48,7 +48,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/jackbravo/gatsby-starter-blog.git"
   },
   "scripts": {
     "dev": "gatsby develop",
