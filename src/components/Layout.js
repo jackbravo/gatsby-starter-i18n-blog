@@ -6,7 +6,7 @@ import { rhythm } from '../utils/typography'
 
 class Layout extends React.Component {
   render() {
-    const { location, config, children } = this.props
+    const { location, config, children, translations } = this.props
     let header
 
     if (`${__PATH_PREFIX__}${config.fields.slug}` === location.pathname) {
@@ -61,7 +61,7 @@ class Layout extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
-        <LanguageSwitcher language={config.frontmatter.language}/>
+        <LanguageSwitcher language={config.frontmatter.language} translations={translations}/>
         {header}
         {children}
       </div>

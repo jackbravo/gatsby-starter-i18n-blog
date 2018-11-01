@@ -16,9 +16,9 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
 
     return (
-      <Layout location={this.props.location} config={this.props.data.config}>
+      <Layout location={this.props.location} config={this.props.data.config} translations={post.frontmatter.translations}>
         <Helmet
-          htmlAttributes={{ lang: post.frontmatter.language }}
+          htmlAttributes={{ lang: this.props.pageContext.language }}
           meta={[{ name: 'description', content: siteDescription }]}
           title={`${post.frontmatter.title} | ${siteTitle}`}
         />
@@ -98,7 +98,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        language
+        translations
       }
     }
   }

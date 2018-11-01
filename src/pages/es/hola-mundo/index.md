@@ -2,7 +2,8 @@
 title: Hola mundo
 date: "2015-05-01T22:12:03.284Z"
 language: es
-translation: "hello-world"
+# An array of pairs of translation language and translation link
+translations: [ "en", "hello-world" ]
 ---
 
 ¡Este es mi primer post en mi nuevo blog falso! ¡Que emocionante!
