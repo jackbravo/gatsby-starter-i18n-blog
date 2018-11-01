@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import LanguageSwitcher from '../components/LanguageSwitcher'
+import LanguageSwitcher from './LanguageSwitcher'
 
 import { rhythm } from '../utils/typography'
 
-class Template extends React.Component {
+class Layout extends React.Component {
   render() {
     const { location, config, children } = this.props
     let header
@@ -69,4 +69,4 @@ class Template extends React.Component {
   }
 }
 
-export default Template
+export default Layout
