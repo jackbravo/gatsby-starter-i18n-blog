@@ -24,35 +24,31 @@ class LanguageSwitcher extends React.Component {
           }
         `}
         render={data => (
-          <div>
+          <ul style={{ listStyle: `none`, marginBottom: 0 }}>
             {data.allMarkdownRemark.edges.map(({ node }) => {
               if (node.frontmatter.language == language) {
                 return
               } else {
                 let translationLink = node.fields.slug
-                if (translations !== undefined) {
+                if (translations) {
                   const translationIndex = translations.findIndex(v => v == node.frontmatter.language)
                   if (translationIndex !== -1) {
                     translationLink = translations[translationIndex+1]
                   }
                 }
                 return (
-                  <h5 key={translationLink} style={{
-                    marginBottom: 0,
-                    marginTop: 0,
-                    zIndex: 10
-                  }}>
+                  <li key={translationLink} style={{ display: `inline-block`, margin: `0 1rem 0 0` }}>
                     <Link style={{
                       boxShadow: 'none',
                       textDecoration: 'none',
                     }} to={translationLink}>
                       {node.frontmatter.language_label}
                     </Link>
-                  </h5>
+                  </li>
                 )
               }
             })}
-          </div>
+          </ul>
         )}
       />
     )
