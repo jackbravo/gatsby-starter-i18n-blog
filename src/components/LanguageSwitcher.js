@@ -38,10 +38,14 @@ class LanguageSwitcher extends React.Component {
                 }
                 return (
                   <li key={translationLink} style={{ display: `inline-block`, margin: `0 1rem 0 0` }}>
-                    <Link style={{
-                      boxShadow: 'none',
-                      textDecoration: 'none',
-                    }} to={translationLink}>
+                    <Link
+                      style={{
+                        boxShadow: 'none',
+                        textDecoration: 'none',
+                      }}
+                      to={translationLink}
+                      hrefLang={node.frontmatter.language}
+                    >
                       {node.frontmatter.language_label}
                     </Link>
                   </li>
